@@ -13,11 +13,15 @@ class Program
         var rebateDataStore = new RebateDataStore();
         var productDataStore = new ProductDataStore();
 
+        // TODO: load calculator concrete types using reflection
         IEnumerable<IIncentiveCalculator> supportedCalculators =
         [
             new AmountPerUomCalculator(),
             new FixedCashAmountCalculator(),
-            new FixedRateRebateCalculator()
+            new FixedRateRebateCalculator(),
+
+            // Adding support to a new calculator type
+            new ShinyNewCalculator()
         ];
 
         var calculatorFactory = new IncentiveCalculatorFactory(supportedCalculators);

@@ -4,5 +4,8 @@ public enum IncentiveType
 {
     FixedRateRebate,
     AmountPerUom,
-    FixedCashAmount
+    FixedCashAmount,
+
+    // A brand new previously unsupported incentive type
+    ShinyNewIncentiveType
 }
