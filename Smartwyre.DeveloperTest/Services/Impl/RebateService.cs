@@ -5,7 +5,8 @@ using Smartwyre.DeveloperTest.Types;
 namespace Smartwyre.DeveloperTest.Services.Impl;
 
 public class RebateService(IRebateDataStore rebateDataStore,
-                           IProductDataStore productDataStore) : IRebateService
+                           IProductDataStore productDataStore,
+                           IIncentiveCalculatorFactory calculatorFactory) : IRebateService
 {
     public CalculateRebateResult Calculate(CalculateRebateRequest request)
     {
