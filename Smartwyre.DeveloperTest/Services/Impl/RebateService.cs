@@ -18,22 +18,7 @@ public class RebateService(IRebateDataStore rebateDataStore,
             return new CalculateRebateResult { Success = false };
         }
 
-        IIncentiveCalculator calculator = null;
-
-        switch (rebate.Incentive)
-        {
-            case IncentiveType.FixedCashAmount:
-                calculator = new FixedCashAmountCalculator();
-                break;
-
-            case IncentiveType.FixedRateRebate:
-                calculator = new FixedRateRebateCalculator();
-                break;
-
-            case IncentiveType.AmountPerUom:
-                calculator = new AmountPerUomCalculator();
-                break;
-        }
+        var calculator = calculatorFactory.GetCalculator(rebate.Incentive);
 
         if (!calculator.IsEligible(rebate, product, request))
         {

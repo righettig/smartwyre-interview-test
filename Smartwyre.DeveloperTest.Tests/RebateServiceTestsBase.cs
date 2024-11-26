@@ -6,7 +6,7 @@ using Smartwyre.DeveloperTest.Types;
 
 namespace Smartwyre.DeveloperTest.Tests;
 
-public class RebateServiceTestsBase
+public abstract class RebateServiceTestsBase
 {
     protected readonly Mock<IRebateDataStore> RebateDataStoreMock;
     protected readonly Mock<IProductDataStore> ProductDataStoreMock;
@@ -19,6 +19,10 @@ public class RebateServiceTestsBase
         RebateDataStoreMock = new Mock<IRebateDataStore>();
         ProductDataStoreMock = new Mock<IProductDataStore>();
         IncentiveCalculatorFactoryMock = new Mock<IIncentiveCalculatorFactory>();
+
+        IncentiveCalculatorFactoryMock
+            .Setup(m => m.GetCalculator(It.IsAny<IncentiveType>()))
+            .Returns(CreateCalculator());
 
         RebateService = new RebateService(RebateDataStoreMock.Object,
                                           ProductDataStoreMock.Object,
@@ -34,4 +38,6 @@ public class RebateServiceTestsBase
             Volume = volume
         };
     }
+
+    protected abstract IIncentiveCalculator CreateCalculator();
 }

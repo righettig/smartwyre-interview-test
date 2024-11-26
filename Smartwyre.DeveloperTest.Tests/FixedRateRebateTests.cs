@@ -1,4 +1,6 @@
 ﻿using Moq;
+using Smartwyre.DeveloperTest.Services.Impl;
+using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 using Xunit;
 
@@ -6,6 +8,8 @@ namespace Smartwyre.DeveloperTest.Tests
 {
     public class FixedRateRebateTests : RebateServiceTestsBase
     {
+        protected override IIncentiveCalculator CreateCalculator() => new FixedRateRebateCalculator();
+
         [Fact]
         public void Calculate_Should_Return_Failure_If_Rebate_Is_Null()
         {
