@@ -1,5 +1,4 @@
-﻿using Moq;
-using Smartwyre.DeveloperTest.Services.Impl.Calculators;
+﻿using Smartwyre.DeveloperTest.Services.Impl.Calculators;
 using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 using Xunit;
@@ -96,9 +95,6 @@ namespace Smartwyre.DeveloperTest.Tests.Integration
 
             // Assert
             Assert.True(result.Success);
-
-            // TODO
-            //RebateDataStoreMock.Verify(m => m.StoreCalculationResult(rebate, 100), Times.Once);
         }
     }
 }
