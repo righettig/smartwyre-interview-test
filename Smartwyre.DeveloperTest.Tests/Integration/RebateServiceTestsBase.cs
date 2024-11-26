@@ -4,7 +4,7 @@ using Smartwyre.DeveloperTest.Services.Impl;
 using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 
-namespace Smartwyre.DeveloperTest.Tests;
+namespace Smartwyre.DeveloperTest.Tests.Integration;
 
 public abstract class RebateServiceTestsBase
 {

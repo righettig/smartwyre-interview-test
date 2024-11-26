@@ -1,10 +1,10 @@
 ﻿using Moq;
-using Smartwyre.DeveloperTest.Services.Impl;
+using Smartwyre.DeveloperTest.Services.Impl.Calculators;
 using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 using Xunit;
 
-namespace Smartwyre.DeveloperTest.Tests
+namespace Smartwyre.DeveloperTest.Tests.Integration
 {
     public class FixedCashAmountTests : RebateServiceTestsBase
     {
@@ -17,7 +17,7 @@ namespace Smartwyre.DeveloperTest.Tests
             var request = CreateRequest("rebate1", "product1", 10);
             var product = new Product { SupportedIncentives = SupportedIncentiveType.FixedCashAmount };
 
-            RebateDataStoreMock.Setup(m => m.GetRebate("rebate1")).Returns((Rebate) null);
+            RebateDataStoreMock.Setup(m => m.GetRebate("rebate1")).Returns((Rebate)null);
             ProductDataStoreMock.Setup(m => m.GetProduct("product1")).Returns(product);
 
             // Act
@@ -35,7 +35,7 @@ namespace Smartwyre.DeveloperTest.Tests
             var rebate = new Rebate { Incentive = IncentiveType.FixedCashAmount, Amount = 100 };
 
             RebateDataStoreMock.Setup(m => m.GetRebate("rebate1")).Returns(rebate);
-            ProductDataStoreMock.Setup(m => m.GetProduct("product1")).Returns((Product) null);
+            ProductDataStoreMock.Setup(m => m.GetProduct("product1")).Returns((Product)null);
 
             // Act
             var result = RebateService.Calculate(request);
@@ -96,7 +96,7 @@ namespace Smartwyre.DeveloperTest.Tests
 
             // Assert
             Assert.True(result.Success);
-            
+
             // TODO
             //RebateDataStoreMock.Verify(m => m.StoreCalculationResult(rebate, 100), Times.Once);
         }

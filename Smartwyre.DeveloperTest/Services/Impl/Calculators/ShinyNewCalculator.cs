@@ -1,7 +1,7 @@
 ﻿using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 
-namespace Smartwyre.DeveloperTest.Services.Impl
+namespace Smartwyre.DeveloperTest.Services.Impl.Calculators
 {
     public class ShinyNewCalculator : IIncentiveCalculator
     {

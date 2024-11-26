@@ -1,25 +1,24 @@
 ﻿using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 
-namespace Smartwyre.DeveloperTest.Services.Impl
+namespace Smartwyre.DeveloperTest.Services.Impl.Calculators
 {
-    public class FixedRateRebateCalculator : IIncentiveCalculator
+    public class AmountPerUomCalculator : IIncentiveCalculator
     {
-        public IncentiveType IncentiveType => IncentiveType.FixedRateRebate;
+        public IncentiveType IncentiveType => IncentiveType.AmountPerUom;
 
         public bool IsEligible(Rebate rebate, Product product, CalculateRebateRequest request)
         {
             return rebate != null
                 && product != null
-                && product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedRateRebate)
-                && rebate.Percentage > 0
-                && product.Price > 0
+                && product.SupportedIncentives.HasFlag(SupportedIncentiveType.AmountPerUom)
+                && rebate.Amount > 0
                 && request.Volume > 0;
         }
 
         public decimal CalculateRebate(Rebate rebate, Product product, CalculateRebateRequest request)
         {
-            return product.Price * rebate.Percentage * request.Volume;
+            return rebate.Amount * request.Volume;
         }
     }
 }
