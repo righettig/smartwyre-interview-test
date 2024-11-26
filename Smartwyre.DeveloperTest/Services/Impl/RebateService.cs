@@ -13,6 +13,11 @@ public class RebateService(IRebateDataStore rebateDataStore,
         Rebate rebate = rebateDataStore.GetRebate(request.RebateIdentifier);
         Product product = productDataStore.GetProduct(request.ProductIdentifier);
 
+        if (rebate == null || product == null)
+        {
+            return new CalculateRebateResult { Success = false };
+        }
+
         var result = new CalculateRebateResult();
 
         var rebateAmount = 0m;
@@ -20,11 +25,7 @@ public class RebateService(IRebateDataStore rebateDataStore,
         switch (rebate.Incentive)
         {
             case IncentiveType.FixedCashAmount:
-                if (rebate == null)
-                {
-                    result.Success = false;
-                }
-                else if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedCashAmount))
+                if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedCashAmount))
                 {
                     result.Success = false;
                 }
@@ -40,15 +41,7 @@ public class RebateService(IRebateDataStore rebateDataStore,
                 break;
 
             case IncentiveType.FixedRateRebate:
-                if (rebate == null)
-                {
-                    result.Success = false;
-                }
-                else if (product == null)
-                {
-                    result.Success = false;
-                }
-                else if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedRateRebate))
+                if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedRateRebate))
                 {
                     result.Success = false;
                 }
@@ -64,15 +57,7 @@ public class RebateService(IRebateDataStore rebateDataStore,
                 break;
 
             case IncentiveType.AmountPerUom:
-                if (rebate == null)
-                {
-                    result.Success = false;
-                }
-                else if (product == null)
-                {
-                    result.Success = false;
-                }
-                else if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.AmountPerUom))
+                if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.AmountPerUom))
                 {
                     result.Success = false;
                 }
