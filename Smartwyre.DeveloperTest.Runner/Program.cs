@@ -1,11 +1,9 @@
-﻿using Smartwyre.DeveloperTest.Data.Impl;
-using Smartwyre.DeveloperTest.Services.Impl;
+﻿using Smartwyre.DeveloperTest.Services.Impl;
 using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Smartwyre.DeveloperTest.Runner;
 
