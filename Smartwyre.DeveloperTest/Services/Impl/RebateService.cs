@@ -1,8 +1,9 @@
 ﻿using Smartwyre.DeveloperTest.Data.Impl;
 using Smartwyre.DeveloperTest.Data.Interfaces;
+using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
 
-namespace Smartwyre.DeveloperTest.Services;
+namespace Smartwyre.DeveloperTest.Services.Impl;
 
 public class RebateService(IRebateDataStore rebateDataStore,
                            IProductDataStore productDataStore) : IRebateService
