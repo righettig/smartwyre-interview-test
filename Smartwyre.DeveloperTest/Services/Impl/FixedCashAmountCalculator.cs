@@ -1,11 +1,12 @@
 ﻿using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
-using System;
 
 namespace Smartwyre.DeveloperTest.Services.Impl
 {
     public class FixedCashAmountCalculator : IIncentiveCalculator
     {
+        public IncentiveType IncentiveType => IncentiveType.FixedCashAmount;
+
         public bool IsEligible(Rebate rebate, Product product, CalculateRebateRequest request)
         {
             return rebate != null
