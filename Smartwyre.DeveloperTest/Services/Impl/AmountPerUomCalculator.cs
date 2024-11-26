@@ -6,9 +6,18 @@ namespace Smartwyre.DeveloperTest.Services.Impl
 {
     public class AmountPerUomCalculator : IIncentiveCalculator
     {
-        public CalculateRebateResult CalculateRebate(Rebate rebate)
+        public bool IsEligible(Rebate rebate, Product product, CalculateRebateRequest request)
         {
-            throw new NotImplementedException();
+            return rebate != null
+                && product != null
+                && product.SupportedIncentives.HasFlag(SupportedIncentiveType.AmountPerUom)
+                && rebate.Amount > 0
+                && request.Volume > 0;
+        }
+
+        public decimal CalculateRebate(Rebate rebate, Product product, CalculateRebateRequest request)
+        {
+            return rebate.Amount * request.Volume;
         }
     }
 }

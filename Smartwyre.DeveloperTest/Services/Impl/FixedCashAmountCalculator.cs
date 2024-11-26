@@ -6,9 +6,16 @@ namespace Smartwyre.DeveloperTest.Services.Impl
 {
     public class FixedCashAmountCalculator : IIncentiveCalculator
     {
-        public CalculateRebateResult CalculateRebate(Rebate rebate)
+        public bool IsEligible(Rebate rebate, Product product, CalculateRebateRequest request)
         {
-            throw new NotImplementedException();
+            return rebate != null
+                && product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedCashAmount)
+                && rebate.Amount > 0;
+        }
+
+        public decimal CalculateRebate(Rebate rebate, Product product, CalculateRebateRequest request)
+        {
+            return rebate.Amount;
         }
     }
 }
