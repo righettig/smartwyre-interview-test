@@ -11,7 +11,7 @@ namespace Smartwyre.DeveloperTest.Services.Impl
         {
             return rebate != null
                 && product != null
-                && product.SupportedIncentives.HasFlag(SupportedIncentiveType.AmountPerUom)
+                && product.SupportedIncentives.HasFlag(SupportedIncentiveType.ShinyNewIncentiveType)
                 && rebate.Amount > 0
                 && request.Volume > 0;
         }
